@@ -16,10 +16,9 @@ const ComponentOne = () => {
 	return (
 		<div className='component component--parent'>
 			<h1 className='component__title'>Component 1</h1>
-
+			<p>Where the state is modified in the component itself.</p>
 			<p>Count: {count}</p>
 			<button onClick={handleClick}>Increment count</button>
-
 		</div>
 	);
 }

@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 type ChildOneProps = { value: boolean }
 
 const ChildOne = ({ value }: ChildOneProps) => {
 	return (
-			<div className='component component--child'>
-				<h2 className='component__title'>Child 1</h2>
-				<p>
-					Value is:
+		<div className='component component--child'>
+			<h2 className='component__title'>Child 1</h2>
+			<p>
+				Value is:
+				{
+					// Conditionnal rendering ternary operator
+					// https://react.dev/learn/conditional-rendering#conditional-ternary-operator--
 					<span className={'feedback feedback--' + (value ? 'positive' : 'negative')}>
-					{
-						value
-							? 'true'
-							: 'false'
-					}
+						{ value.toString() }
 					</span>
-				</p>
-			</div>
+				}
+			</p>
+		</div>
 	);
 };
 
@@ -37,9 +37,13 @@ const ChildTwo = ({ hook, value }: ChildTwoProps) => {
 			<button onClick={handleClick}>Tooggle value</button>
 		</div>
 	);
+
 };
 
 const Parent = () => {
+
+	// How to share data between components
+	// https://react.dev/learn#sharing-data-between-components
 
 	const [value, setValue] = useState(false);
 
@@ -47,12 +51,15 @@ const Parent = () => {
 		<div className='component component--parent'>
 			<h1 className='component__title'>Component 2</h1>
 
+			<p>The component Child 1 is updated because of the component Child two, and how to transmit the state.</p>
+
 			<section className='component__section'>
 				<ChildOne value={value} />
 				<ChildTwo hook={setValue} value={value}/>
 			</section>
 		</div>
 	);
+
 };
 
 export { Parent };
